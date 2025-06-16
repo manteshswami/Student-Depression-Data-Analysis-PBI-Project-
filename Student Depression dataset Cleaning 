@@ -1,0 +1,88 @@
+
+Create Database [PowerBI Project 1]
+
+select * from [dbo].[Depression Student Dataset]
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+select Age,count(*)[Count] from [dbo].[Depression Student Dataset] group by Age order by Age desc
+
+alter Table [dbo].[Depression Student Dataset]
+add Age_Group varchar(max)
+
+select * from [dbo].[Depression Student Dataset]
+
+update [dbo].[Depression Student Dataset] 
+set Age_Group = 
+Case when Age between 18 and 24 then 'A1'
+else case when Age between 25 and 30 then 'A2'
+else 'A3' end end 
+
+select Age_Group, count(*) from [dbo].[Depression Student Dataset] group by Age_Group
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like 'Depression Student Dataset'
+
+select Academic_Pressure, Count(*)[Count] from [dbo].[Depression Student Dataset] group by Academic_Pressure
+
+select Study_Satisfaction, Count(*)[Count] from [dbo].[Depression Student Dataset] group by Study_Satisfaction
+
+select Sleep_Duration, Count(*)[Count] from [dbo].[Depression Student Dataset] group by Sleep_Duration
+
+select Dietary_Habits, Count(*)[Count] from [dbo].[Depression Student Dataset] group by Dietary_Habits
+
+select Have_you_ever_had_suicidal_thoughts, Count(*)[Count] from [dbo].[Depression Student Dataset] 
+group by Have_you_ever_had_suicidal_thoughts
+
+select Study_Hours, Count(*)[Count] from [dbo].[Depression Student Dataset] group by Study_Hours
+
+
+select Financial_Stress, Count(*)[Count] from [dbo].[Depression Student Dataset] group by Financial_Stress
+
+select Family_History_of_Mental_Illness, Count(*)[Count] from [dbo].[Depression Student Dataset] 
+group by Family_History_of_Mental_Illness
+
+
+select Depression, Count(*)[Count] from [dbo].[Depression Student Dataset] group by Depression
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+select Gender,count(*) from [dbo].[Depression Student Dataset] group by Gender
+
+update [dbo].[Depression Student Dataset] set Gender = 'F' where Gender = 'Female'
+update [dbo].[Depression Student Dataset] set Gender = 'M' where Gender = 'Male'
+
+select * from [dbo].[Depression Student Dataset] where Gender is null
+
+select * from [dbo].[Depression Student Dataset] where Gender = ''
+----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+select * from [Depression Student Dataset]
+
+alter Table [dbo].[Depression Student Dataset]
+add index_column int identity(1,1)
+
+-- Changing The Column Name
+EXEC sp_rename '[Depression Student Dataset].index_column','Index_Column','COLUMN';
+
+update [Depression Student Dataset] set depression = 'No' where depression = 0
+
+select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like 'Depression Student Dataset'
+
+-- Changing the datatype of depression column
+alter table [Depression Student Dataset]
+alter column Depression Varchar(Max)
+
+-- using the '1' instead of 1 because changing the datatype to varchar.
+update [Depression Student Dataset] set depression = 'Yes' where depression = '1'
+
+
+select depression, count(*) from [dbo].[Depression Student Dataset] group by depression
+
